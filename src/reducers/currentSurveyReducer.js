@@ -1,8 +1,8 @@
 export default (state = {}, action) => {
     switch (action.type) {
-        case 'INIT_APP':
+        case 'LOAD_SURVEY':
             return {
-                ...action.payload
+                current: action.payload
             }
         default:
             return state

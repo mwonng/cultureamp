@@ -1,6 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
-import axios from 'axios';
-import SurveyList from './components/SurveyList'
+import React from 'react';
 import SuveryResult from './components/Survey/SurveyResult'
 import {
     BrowserRouter as Router,
@@ -8,48 +6,29 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import { connect } from 'react-redux'
-import { fetchSurveyListPending, fetchSurveyListSuccess, fetchSurveyListError } from './actions/surveyListAction'
-// import { simpleAction } from './actions/simpleAction'
+import { Provider } from 'react-redux'
 import './core.scss';
-import simpleReducer from './reducers/simpleReducer';
-import { simpleAction } from './actions/simpleAction';
+import { getSurveys } from './api/surveys'
+import { useFetch } from './hooks/useFetch'
+import { configureStore } from './store';
+import { initData } from './actions/surveyListAction'
+import SurveryListContainer from './components/SurveryListContainer'
+function App() {
+    const { data, loading, error } = useFetch(getSurveys)
+
+    let body;
+    if (loading) body = <p>Loading...</p>
+    else if (error) body = <p>Error</p>
+    else if (!data) body = <p>No data</p>
 
 
-function fetchProducts() {
-    console.log("loading?")
+    if (body) return body
 
-    return dispatch => {
-        dispatch(fetchSurveyListPending());
-        axios.get(`${process.env.REACT_APP_ENDPOINT}/surveys/`)
-            .then(response => {
-                console.log(response);
-                dispatch(fetchSurveyListSuccess(response.data));
-            })
-            .catch(error => {
-                console.log(error);
-                dispatch(fetchSurveyListError(error));
-            })
-    }
-}
-
-function App({ simple, init }) {
-    console.log("simple", simple);
-    init()
-    useEffect(() => {
-        console.log("run app");
-        // fetchProducts()
-    }, [])
-    const SurveyProvider = () => {
-        return (
-            <>
-                <h1>The title one</h1>
-            </>
-        )
-    }
+    const store = configureStore()
+    store.dispatch(initData(data))
 
     return (
-        <div className="App">
+        <Provider store={store}>
             <Router>
                 <ul>
                     <li>
@@ -59,27 +38,16 @@ function App({ simple, init }) {
                         <Link to="/surveys/4">About</Link>
                     </li>
                 </ul>
+                <hr />
                 <Switch>
                     <Route exact path="/">
-                        <SurveyProvider />
+                        <SurveryListContainer />
                     </Route>
                     <Route path="/surveys/:id" children={<SuveryResult />} />
                 </Switch>
             </Router>
-        </div >
+        </Provider>
     );
 }
 
-const mapToProps = state => {
-    return {
-        simple: state.simpleReducer
-    }
-}
-
-const mapActionToProps = dispatch => {
-    return {
-        init: () => dispatch(simpleAction)
-    }
-}
-
-export default connect(mapToProps, mapActionToProps)(App);
+export default App
