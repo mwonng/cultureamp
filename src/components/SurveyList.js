@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 // import { useFetch } from '../hooks/useFetch'
 import axios from 'axios'
@@ -7,9 +7,14 @@ function SurveyList({ surverys, loadResult, prefetchingStart, prefetchingEnd }) 
     const shouldFetchRef = useRef(null)
     const { survey_results } = surverys
 
+    useEffect(() => {
+        return () => {
+            clearTimeout(shouldFetchRef.current)
+        };
+    }, [])
+
     const onMouseEnterHandler = (result) => {
         shouldFetchRef.current = setTimeout(async () => {
-            // const { data, loading, error } = useFetch(result.url)
             try {
                 console.log("trying to fetch", result.url);
                 prefetchingStart()

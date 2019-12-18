@@ -5,6 +5,11 @@ export default (state = {}, action) => {
                 ...state,
                 ...action.payload
             }
+        case 'UPDATE_RESULT':
+            return {
+                ...state,
+                ...action.payload
+            }
         case 'PREFETCHING_START':
             return {
                 ...state,

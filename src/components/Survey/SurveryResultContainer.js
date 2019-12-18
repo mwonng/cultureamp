@@ -1,6 +1,6 @@
 import SurveyResult from './SurveyResult';
 import { connect } from 'react-redux'
-import { loadResult } from '../../actions/surveryResultAction'
+import { updateResult } from '../../actions/surveryResultAction'
 
 
 const mapStateToProps = state => ({
@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToprops = dispatch => ({
-    fetchResult: (result) => dispatch(loadResult(result))
+    updateResult: (data) => dispatch(updateResult(data))
 })
 
 

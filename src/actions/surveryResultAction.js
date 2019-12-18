@@ -5,6 +5,13 @@ export const loadResult = (data) => dispatch => {
     })
 }
 
+export const updateResult = (data) => dispatch => {
+    dispatch({
+        type: 'UPDATE_RESULT',
+        payload: data
+    })
+}
+
 export const prefetchingStart = (data) => dispatch => {
     dispatch({
         type: 'PREFETCHING_START',
