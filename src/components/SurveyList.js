@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 // import { useFetch } from '../hooks/useFetch'
 import axios from 'axios'
 
-function SurveyList({ surverys, loadResult, prefetchingStart, prefetchingEnd }) {
+function SurveyList({ surverys, loadResult, prefetchingStart, prefetchingEnd, resetResult }) {
     const shouldFetchRef = useRef(null)
     const { survey_results } = surverys
 
     useEffect(() => {
+        resetResult();
         return () => {
             clearTimeout(shouldFetchRef.current)
         };

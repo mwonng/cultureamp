@@ -4,6 +4,12 @@ export const loadResult = (data) => dispatch => {
         payload: data
     })
 }
+export const resetResult = () => dispatch => {
+    dispatch({
+        type: 'RESET_RESULT',
+    })
+}
+
 
 export const updateResult = (data) => dispatch => {
     dispatch({

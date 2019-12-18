@@ -5,6 +5,8 @@ export default (state = {}, action) => {
                 ...state,
                 ...action.payload
             }
+        case 'RESET_RESULT':
+            return {}
         case 'UPDATE_RESULT':
             return {
                 ...state,

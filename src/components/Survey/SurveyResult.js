@@ -2,15 +2,8 @@
 import React, { useEffect } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import { withRouter } from "react-router";
-
-function isEmptyObj(obj) {
-    return Object.keys(obj).length === 0
-}
-
-function floatToPercent(number, n) {
-    const percentage = Math.floor(number * Math.pow(10, 2 + n)) / Math.pow(10, n)
-    return `${percentage}%`
-}
+import ThemesContainer from '../Theme/ThemesContainer'
+import { isEmptyObj, floatToPercent } from '../../utils'
 
 function SurveryResult({ currentResult, location, prefetching, updateResult }) {
     const { state } = location
@@ -37,7 +30,7 @@ function SurveryResult({ currentResult, location, prefetching, updateResult }) {
         <div>
             <p>id: {result.survey_result_detail.name}</p>
             <p>persentage: {floatToPercent(result.survey_result_detail.response_rate, 2)}</p>
-
+            <ThemesContainer />
         </div>
     )
 }
