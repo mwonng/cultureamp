@@ -1,5 +1,4 @@
 import React from 'react';
-import SuveryResult from './components/Survey/SurveyResult'
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,8 +12,11 @@ import { useFetch } from './hooks/useFetch'
 import { configureStore } from './store';
 import { initData } from './actions/surveyListAction'
 import SurveryListContainer from './components/SurveryListContainer'
+import SurveryResultContainer from './components/Survey/SurveryResultContainer';
+
 function App() {
-    const { data, loading, error } = useFetch(getSurveys)
+    const survey_url = '/surveys';
+    const { data, loading, error } = useFetch(survey_url)
 
     let body;
     if (loading) body = <p>Loading...</p>
@@ -35,7 +37,7 @@ function App() {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <Link to="/surveys/4">About</Link>
+                        <Link to="/survey">About</Link>
                     </li>
                 </ul>
                 <hr />
@@ -43,7 +45,7 @@ function App() {
                     <Route exact path="/">
                         <SurveryListContainer />
                     </Route>
-                    <Route path="/surveys/:id" children={<SuveryResult />} />
+                    <Route path="/survey" children={<SurveryResultContainer />} />
                 </Switch>
             </Router>
         </Provider>

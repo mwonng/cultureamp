@@ -26,7 +26,10 @@ function SurveyList({ surverys }) {
                 key={sr.url}
             >
                 <Link
-                    to={sr.url}
+                    to={{
+                        pathname: '/survey',
+                        state: { result: sr }
+                    }}
                 >
                     {sr.name}
                 </Link>
