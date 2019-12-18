@@ -9,9 +9,8 @@ export const useFetch = (url) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/${url}`);
-                console.log(res.data)
                 setLoading(true)
+                const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/${url}`);
                 const { data } = res
                 setData(data)
             } catch (error) {

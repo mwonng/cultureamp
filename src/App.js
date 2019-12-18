@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { Provider } from 'react-redux'
 import './core.scss';
-import { getSurveys } from './api/surveys'
+// import { getSurveys } from './api/surveys'
 import { useFetch } from './hooks/useFetch'
 import { configureStore } from './store';
 import { initData } from './actions/surveyListAction'

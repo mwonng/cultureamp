@@ -1,6 +1,6 @@
-export const loadResult = (currentSurvey) => dispatch => {
+export const loadResult = (data) => dispatch => {
     dispatch({
         type: 'LOAD_SURVEY',
-        payload: currentSurvey
+        payload: data
     })
 }

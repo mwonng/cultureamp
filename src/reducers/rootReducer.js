@@ -6,5 +6,5 @@ import currentSurveyReducer from './currentSurveyReducer'
 export default combineReducers({
     surveryReducer,
     simpleReducer,
-    currentSurveyReducer
+    currentResult: currentSurveyReducer
 });

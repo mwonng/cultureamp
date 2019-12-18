@@ -4,7 +4,7 @@ import { loadResult } from '../../actions/surveryResultAction'
 
 
 const mapStateToProps = state => ({
-    survey: state.currentSurvey
+    currentResult: state.currentResult
 })
 
 const mapDispatchToprops = dispatch => ({

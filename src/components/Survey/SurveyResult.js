@@ -1,29 +1,30 @@
 
-import React, { useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import React from 'react'
 import { useFetch } from '../../hooks/useFetch'
-// import { getResult } from '../../api/surveys'
 import { withRouter } from "react-router";
 
+function isEmptyObj(obj) {
+    return Object.keys(obj).length === 0
+}
 
-function SurveryResult({ survey, fetchResult, location }) {
+function SurveryResult({ currentResult, fetchResult, location }) {
     const { state } = location
     const url = state.result.url
     const { data, loading, error } = useFetch(url)
-    let { id } = useParams();
-    // console.log("data", data)
 
     let body;
-    if (loading) body = <p>Loading...</p>
-    else if (error) body = <p>Error</p>
-    else if (!data) body = <p>No data</p>
 
+    if (isEmptyObj(currentResult) && loading) body = <p>Loading...</p>
+    else if (error) body = <p>Error</p>
+    else if (!data && !currentResult) body = <p>No data</p>
 
     if (body) return body
 
+    const result = isEmptyObj(currentResult) ? data : currentResult
+
     return (
         <div>
-            id: {id}
+            id: {result.survey_result_detail.name}
         </div>
     )
 }
