@@ -7,20 +7,21 @@ import {
 } from "react-router-dom";
 import { Provider } from 'react-redux'
 import './core.scss';
-// import { getSurveys } from './api/surveys'
 import { useFetch } from './hooks/useFetch'
 import { configureStore } from './store';
 import { initData } from './actions/surveyListAction'
-import SurveryListContainer from './components/SurveryListContainer'
-import SurveryResultContainer from './components/Survey/SurveryResultContainer';
+import SurveryListContainer from './components/SurveyList/SurveryListContainer'
+import SurveryResultContainer from './components/SurveyResult/SurveryResultContainer';
+import NoMatch from './components/ErrorPage/NotFound'
+import Loading from './components/ErrorPage/Loading'
 
 function App() {
     const survey_url = '/surveys';
     const { data, loading, error } = useFetch(survey_url)
 
     let body;
-    if (loading) body = <p>Loading...</p>
-    else if (error) body = <p>Error</p>
+    if (loading) body = <Loading />
+    else if (error) body = <NoMatch />
     else if (!data) body = <p>No data</p>
 
 
@@ -32,21 +33,17 @@ function App() {
     return (
         <Provider store={store}>
             <Router>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/survey">About</Link>
-                    </li>
-                </ul>
+                <Link to="/" className="btn btn-primary">Home</Link>
                 <hr />
                 <div className="container">
                     <Switch>
                         <Route exact path="/">
                             <SurveryListContainer />
                         </Route>
-                        <Route path="/survey" children={<SurveryResultContainer />} />
+                        <Route path="/surveys/:id" children={<SurveryResultContainer />} />
+                        <Route path="*">
+                            <NoMatch />
+                        </Route>
                     </Switch>
                 </div>
             </Router>

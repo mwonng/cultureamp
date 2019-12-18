@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-// import { useFetch } from '../hooks/useFetch'
 import axios from 'axios'
 
 function SurveyList({ surverys, loadResult, prefetchingStart, prefetchingEnd, resetResult }) {
@@ -49,7 +48,7 @@ function SurveyList({ surverys, loadResult, prefetchingStart, prefetchingEnd, re
             >
                 <Link
                     to={{
-                        pathname: '/survey',
+                        pathname: sr.url,
                         state: { result: sr }
                     }}
                 >

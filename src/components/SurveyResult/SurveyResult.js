@@ -4,10 +4,13 @@ import { useFetch } from '../../hooks/useFetch'
 import { withRouter } from "react-router";
 import ThemesContainer from '../Theme/ThemesContainer'
 import { isEmptyObj, floatToPercent } from '../../utils'
+import { useParams } from "react-router-dom";
+import NotFound from '../ErrorPage/NotFound'
+import Loading from '../ErrorPage/Loading'
 
-function SurveryResult({ currentResult, location, prefetching, updateResult }) {
-    const { state } = location
-    const url = state.result.url
+function SurveryResult({ currentResult, prefetching, updateResult }) {
+    const { id } = useParams();
+    const url = `\\surveys\\${id}`
     const { data, loading, error } = useFetch(url)
 
     useEffect(() => {
@@ -17,9 +20,9 @@ function SurveryResult({ currentResult, location, prefetching, updateResult }) {
     }, [data, updateResult])
 
     let body;
-    if (isEmptyObj(currentResult) && loading) body = <p>Loading...</p>
-    else if (prefetching) body = <p>Prefetching...</p>
-    else if (error) body = <p>Error</p>
+    if (isEmptyObj(currentResult) && loading) body = <Loading />
+    else if (prefetching) body = <Loading />
+    else if (error) body = <NotFound />
     else if (!data && !currentResult) body = <p>No data</p>
 
     if (body) return body
@@ -28,8 +31,8 @@ function SurveryResult({ currentResult, location, prefetching, updateResult }) {
 
     return (
         <div>
-            <p>id: {result.survey_result_detail.name}</p>
-            <p>persentage: {floatToPercent(result.survey_result_detail.response_rate, 2)}</p>
+            <h1>{result.survey_result_detail.name}</h1>
+            <p>Response Rate: {floatToPercent(result.survey_result_detail.response_rate, 2)}</p>
             <ThemesContainer />
         </div>
     )

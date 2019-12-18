@@ -1,6 +1,6 @@
 import SurveryList from './SurveyList'
 import { connect } from 'react-redux'
-import { loadResult, prefetchingStart, prefetchingEnd, resetResult } from '../actions/surveryResultAction'
+import { loadResult, prefetchingStart, prefetchingEnd, resetResult } from '../../actions/surveryResultAction'
 const mapStateToProps = (state) => ({
     surverys: state.surveryReducer
 })

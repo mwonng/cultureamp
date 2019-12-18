@@ -3,16 +3,12 @@ import { getAvarageRate } from '../../utils'
 
 
 function Themes({ allThemes }) {
-
-    console.log(allThemes)
-
     const themes = allThemes.map(at =>
         <div key={at.name}>
             <h3>{at.name}</h3>
             <Questions questions={at.questions} />
         </div>
     )
-
     return (
         <div>
             {themes}
