@@ -4,7 +4,8 @@ import { loadResult } from '../../actions/surveryResultAction'
 
 
 const mapStateToProps = state => ({
-    currentResult: state.currentResult
+    currentResult: state.currentResult,
+    prefetching: state.currentResult.prefetching
 })
 
 const mapDispatchToprops = dispatch => ({

@@ -4,3 +4,15 @@ export const loadResult = (data) => dispatch => {
         payload: data
     })
 }
+
+export const prefetchingStart = (data) => dispatch => {
+    dispatch({
+        type: 'PREFETCHING_START',
+    })
+}
+
+export const prefetchingEnd = (data) => dispatch => {
+    dispatch({
+        type: 'PREFETCHING_END',
+    })
+}

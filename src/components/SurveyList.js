@@ -3,29 +3,26 @@ import { Link } from 'react-router-dom'
 // import { useFetch } from '../hooks/useFetch'
 import axios from 'axios'
 
-function SurveyList({ surverys, loadResult }) {
+function SurveyList({ surverys, loadResult, prefetchingStart, prefetchingEnd }) {
     const shouldFetchRef = useRef(null)
-    const [prefetching, setPrefetching] = useState(false)
     const { survey_results } = surverys
-
-    useEffect(() => {
-        return () => {
-            console.log("clear")
-            setPrefetching(false)
-        };
-    }, [])
 
     const onMouseEnterHandler = (result) => {
         shouldFetchRef.current = setTimeout(async () => {
             // const { data, loading, error } = useFetch(result.url)
             try {
                 console.log("trying to fetch", result.url);
-                setPrefetching(true)
-                const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/${result.url}`)
-                loadResult(res.data)
-                // setPrefetching(false)
+                prefetchingStart()
+                axios.get(`${process.env.REACT_APP_ENDPOINT}/${result.url}`)
+                    .then(res => {
+                        loadResult(res.data)
+                        prefetchingEnd()
+                    })
+                    .finally(() => {
+                        prefetchingEnd()
+                    })
             } catch (error) {
-                console.log("something went wrong")
+                console.log("prefetching went wrong")
             }
         }, 1000)
     }
@@ -47,7 +44,7 @@ function SurveyList({ surverys, loadResult }) {
                 <Link
                     to={{
                         pathname: '/survey',
-                        state: { result: sr, prefetching: prefetching }
+                        state: { result: sr }
                     }}
                 >
                     {sr.name}

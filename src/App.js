@@ -41,12 +41,14 @@ function App() {
                     </li>
                 </ul>
                 <hr />
-                <Switch>
-                    <Route exact path="/">
-                        <SurveryListContainer />
-                    </Route>
-                    <Route path="/survey" children={<SurveryResultContainer />} />
-                </Switch>
+                <div className="container">
+                    <Switch>
+                        <Route exact path="/">
+                            <SurveryListContainer />
+                        </Route>
+                        <Route path="/survey" children={<SurveryResultContainer />} />
+                    </Switch>
+                </div>
             </Router>
         </Provider>
     );
