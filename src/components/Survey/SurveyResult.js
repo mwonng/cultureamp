@@ -7,6 +7,11 @@ function isEmptyObj(obj) {
     return Object.keys(obj).length === 0
 }
 
+function floatToPercent(number, n) {
+    const percentage = Math.floor(number * Math.pow(10, 2 + n)) / Math.pow(10, n)
+    return `${percentage}%`
+}
+
 function SurveryResult({ currentResult, location, prefetching, updateResult }) {
     const { state } = location
     const url = state.result.url
@@ -30,7 +35,9 @@ function SurveryResult({ currentResult, location, prefetching, updateResult }) {
 
     return (
         <div>
-            id: {result.survey_result_detail.name}
+            <p>id: {result.survey_result_detail.name}</p>
+            <p>persentage: {floatToPercent(result.survey_result_detail.response_rate, 2)}</p>
+
         </div>
     )
 }
