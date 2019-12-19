@@ -1,8 +1,7 @@
 import React from 'react'
-import { render, waitForElement } from '@testing-library/react'
+import { waitForElement } from '@testing-library/react'
 import SurveyResult from './SurveyResult'
 import { renderWithRedux, mockStore } from '../../redux/testHelpers'
-import { act } from 'react-dom/test-utils'
 import { updateResult } from '../../actions/surveryResultAction'
 
 test('renders SurveyResult component', async () => {
