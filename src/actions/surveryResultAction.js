@@ -1,7 +1,7 @@
-export const loadResult = (data) => dispatch => {
+export const loadResult = data => dispatch => {
     dispatch({
         type: 'LOAD_SURVEY',
-        payload: data
+        payload: data,
     })
 }
 export const resetResult = () => dispatch => {
@@ -10,21 +10,20 @@ export const resetResult = () => dispatch => {
     })
 }
 
-
-export const updateResult = (data) => dispatch => {
+export const updateResult = data => dispatch => {
     dispatch({
         type: 'UPDATE_RESULT',
-        payload: data
+        payload: data,
     })
 }
 
-export const prefetchingStart = (data) => dispatch => {
+export const prefetchingStart = data => dispatch => {
     dispatch({
         type: 'PREFETCHING_START',
     })
 }
 
-export const prefetchingEnd = (data) => dispatch => {
+export const prefetchingEnd = data => dispatch => {
     dispatch({
         type: 'PREFETCHING_END',
     })

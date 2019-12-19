@@ -4,14 +4,13 @@ import axios from 'axios'
 import { StyledList, StyledListWrapper } from './Style'
 import PropTypes from 'prop-types'
 
-function SurveyList(props) {
-    const {
-        surveys,
-        loadResult,
-        prefetchingStart,
-        prefetchingEnd,
-        resetResult,
-    } = props
+function SurveyList({
+    surveys,
+    loadResult,
+    prefetchingStart,
+    prefetchingEnd,
+    resetResult,
+}) {
     const shouldFetchRef = useRef(null)
     const { survey_results } = surveys
 

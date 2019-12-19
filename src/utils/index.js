@@ -13,12 +13,7 @@ export const getAvarageRate = questionResponse => {
     return Math.round((sum / count) * 100) / 100
 }
 
-export const isEmptyObj = obj => {
-    return Object.keys(obj).length === 0
-}
+export const isEmptyObj = obj => Object.keys(obj).length === 0
 
-export const floatToPercent = (number, n) => {
-    const percentage =
-        Math.floor(number * Math.pow(10, 2 + n)) / Math.pow(10, n)
-    return `${percentage}%`
-}
+export const floatToPercent = (number, n) =>
+    `${Math.floor(number * Math.pow(10, 2 + n)) / Math.pow(10, n)}%`

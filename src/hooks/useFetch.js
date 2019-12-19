@@ -10,10 +10,9 @@ export const useFetch = url => {
         const fetchData = async () => {
             try {
                 setLoading(true)
-                const res = await axios.get(
+                const { data } = await axios.get(
                     `${process.env.REACT_APP_ENDPOINT}${url}`
                 )
-                const { data } = res
                 setData(data)
             } catch (error) {
                 setError('something went wrong')

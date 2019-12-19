@@ -16,8 +16,6 @@ function App() {
     const survey_url = '/surveys'
     const { data, loading, error } = useFetch(survey_url)
 
-    console.log(data, loading, error)
-
     let body
     if (loading) body = <Loading />
     else if (error) body = <Offline />
