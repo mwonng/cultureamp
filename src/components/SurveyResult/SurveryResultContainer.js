@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { updateResult } from '../../actions/surveryResultAction'
 
 const mapStateToProps = state => ({
-    currentResult: state.currentResult,
+    resultDetail: state.currentResult.resultDetail,
+    prefetching: state.currentResult.prefetching,
 })
 
 const mapDispatchToprops = dispatch => ({

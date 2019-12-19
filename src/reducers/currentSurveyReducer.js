@@ -1,26 +1,34 @@
-export default (state = {}, action) => {
+const INITIAL_STATE = {
+    prefetching: false,
+    resultDetail: null,
+}
+export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case 'LOAD_SURVEY':
             return {
                 ...state,
-                ...action.payload
+                ...action.payload,
+                resultDetail: action.payload.survey_result_detail,
             }
         case 'RESET_RESULT':
-            return {}
+            return {
+                ...INITIAL_STATE,
+            }
         case 'UPDATE_RESULT':
             return {
                 ...state,
-                ...action.payload
+                ...action.payload,
+                resultDetail: action.payload.survey_result_detail,
             }
         case 'PREFETCHING_START':
             return {
                 ...state,
-                prefetching: true
+                prefetching: true,
             }
         case 'PREFETCHING_END':
             return {
                 ...state,
-                prefetching: false
+                prefetching: false,
             }
         default:
             return state

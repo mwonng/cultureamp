@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import ThemesContainer from '../Theme/ThemesContainer'
-import { isEmptyObj, floatToPercent } from '../../utils'
+import { floatToPercent } from '../../utils'
 import NotFound from '../Exception/NotFound'
 import Loading from '../Exception/Loading'
 import { ResultWrapper } from './Style'
 import PropTypes from 'prop-types'
 
 function SurveryResult(props) {
-    const { currentResult, updateResult, match } = props
+    const { resultDetail, updateResult, match, prefetching } = props
     const resultEndpointPath = `/surveys/${match.params.id}`
     const { data, loading, error } = useFetch(resultEndpointPath)
 
@@ -19,29 +19,35 @@ function SurveryResult(props) {
     }, [data, updateResult])
 
     let body
-    if (isEmptyObj(currentResult) && loading) body = <Loading />
-    else if (currentResult.prefetching) body = <Loading />
-    else if (error) body = <NotFound />
-    else if (!data && !currentResult) body = <p>No data</p>
+    switch (true) {
+        case !resultDetail && prefetching:
+            body = <Loading text="Prefetching" />
+            break
+        case !resultDetail && loading:
+            body = <Loading />
+            break
+        case error:
+            body = <NotFound />
+            break
+        default:
+            body = null
+    }
 
     if (body) return body
 
-    const result = isEmptyObj(currentResult) ? data : currentResult
+    const result = resultDetail || data.survey_result_detail
 
     return (
         <ResultWrapper data-testid="result-component">
-            <h1>{result.survey_result_detail.name}</h1>
-            <h4>
-                Response Rate:{' '}
-                {floatToPercent(result.survey_result_detail.response_rate, 2)}
-            </h4>
-            <ThemesContainer />
+            <h1>{result.name}</h1>
+            <h4>Response Rate: {floatToPercent(result.response_rate, 2)}</h4>
+            <ThemesContainer data={result.themes} />
         </ResultWrapper>
     )
 }
 
 SurveryResult.propTypes = {
-    currentResult: PropTypes.object,
+    resultDetail: PropTypes.object,
     updateResult: PropTypes.func,
     match: PropTypes.object.isRequired,
 }

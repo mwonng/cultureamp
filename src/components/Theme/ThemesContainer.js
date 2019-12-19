@@ -1,10 +1,8 @@
 import Themes from './Themes'
 import { connect } from 'react-redux'
 
-const mapStateToProps = state => ({
-    allThemes: state.currentResult.survey_result_detail.themes,
+const mapStateToProps = (state, ownProps) => ({
+    allThemes: ownProps.data,
 })
 
-const mapDispatchToProps = dispatch => ({})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Themes)
+export default connect(mapStateToProps)(Themes)

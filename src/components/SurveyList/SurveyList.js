@@ -5,14 +5,13 @@ import { StyledList, StyledListWrapper } from './Style'
 import PropTypes from 'prop-types'
 
 function SurveyList({
-    surveys,
+    allSurveys,
     loadResult,
     prefetchingStart,
     prefetchingEnd,
     resetResult,
 }) {
     const shouldFetchRef = useRef(null)
-    const { survey_results } = surveys
 
     useEffect(() => {
         resetResult()
@@ -46,7 +45,7 @@ function SurveyList({
         }
     }
 
-    const list = survey_results.map(sr => {
+    const list = allSurveys.map(sr => {
         return (
             <Link
                 to={{
@@ -69,7 +68,7 @@ function SurveyList({
 }
 
 SurveyList.propTypes = {
-    surveys: PropTypes.object,
+    allSurveys: PropTypes.array,
     loadResult: PropTypes.func.isRequired,
     prefetchingStart: PropTypes.func.isRequired,
     prefetchingEnd: PropTypes.func.isRequired,
