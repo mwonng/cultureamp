@@ -7,8 +7,7 @@ import Loading from '../Exception/Loading'
 import { ResultWrapper } from './Style'
 import PropTypes from 'prop-types'
 
-function SurveryResult(props) {
-    const { resultDetail, updateResult, match, prefetching } = props
+function SurveryResult({ resultDetail, updateResult, match, prefetching }) {
     const resultEndpointPath = `/surveys/${match.params.id}`
     const { data, loading, error } = useFetch(resultEndpointPath)
 
@@ -35,13 +34,17 @@ function SurveryResult(props) {
 
     if (body) return body
 
-    const result = resultDetail || data.survey_result_detail
+    const result = resultDetail || data?.survey_result_detail
 
     return (
         <ResultWrapper data-testid="result-component">
-            <h1>{result.name}</h1>
-            <h4>Response Rate: {floatToPercent(result.response_rate, 2)}</h4>
-            <ThemesContainer data={result.themes} />
+            <div>
+                <h1>{result.name}</h1>
+                <h4>
+                    Response Rate: {floatToPercent(result.response_rate, 2)}
+                </h4>
+                <ThemesContainer data={result.themes} />
+            </div>
         </ResultWrapper>
     )
 }

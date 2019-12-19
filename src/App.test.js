@@ -1,9 +1,14 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, waitForElement } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
 import App from './App'
 
-test('renders learn react link', () => {
+test('renders learn react link', async () => {
     const { getByTestId } = render(<App />)
-    const linkElement = getByTestId('app-container')
-    expect(linkElement).toBeTruthy()
+    expect(getByTestId('loading-component')).toHaveTextContent('Loading')
+
+    const resolvedNode = await waitForElement(() =>
+        getByTestId('app-container')
+    )
+    expect(resolvedNode).toBeTruthy()
 })

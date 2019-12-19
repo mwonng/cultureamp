@@ -5,8 +5,8 @@ import rootReducer from '../reducers/rootReducer'
 import { render } from '@testing-library/react'
 
 export const mockStore = {
-    surveyReducer: {
-        survey_results: [
+    surveys: {
+        allSurveys: [
             {
                 name: 'Simple Survey',
                 url: '/surveys/1',
@@ -267,5 +267,18 @@ export function renderWithRedux(
     return {
         ...render(<Provider store={store}>{ui}</Provider>),
         mockStore,
+    }
+}
+
+export function renderWithRouter(
+    ui,
+    {
+        route = '/',
+        history = createMemoryHistory({ initialEntries: [route] }),
+    } = {}
+) {
+    return {
+        ...render(<Router history={history}>{ui}</Router>),
+        history,
     }
 }

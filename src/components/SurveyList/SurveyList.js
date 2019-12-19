@@ -34,7 +34,7 @@ function SurveyList({
                         prefetchingEnd()
                     })
             } catch (error) {
-                console.log('prefetching went wrong')
+                throw new Error('prefetching went wrong')
             }
         }, process.env.REACT_APP_PREFETCH_TIMEOUT)
     }

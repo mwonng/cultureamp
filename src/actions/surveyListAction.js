@@ -1,26 +1,6 @@
-export const fetchSurveyListPending = () => dispatch => {
+export const initData = data => dispatch => {
     dispatch({
-        type: 'FETCH_SURVEY_LIST_PENDING',
+        type: 'INIT_APP',
+        payload: data,
     })
-}
-
-export const fetchSurveyListSuccess = (surveys) => dispatch => {
-    dispatch({
-        type: 'FETCH_SURVEY_LIST_SUCCESS',
-        payload: surveys
-    })
-}
-
-export const fetchSurveyListError = (error) => dispatch => {
-    dispatch({
-        type: 'FETCH_SURVEY_LIST_ERROR',
-        payload: error
-    })
-}
-
-export const initData = (data) => dispatch => {
-  dispatch({
-      type: 'INIT_APP',
-      payload: data
-  })
 }
