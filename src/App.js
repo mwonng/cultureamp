@@ -6,6 +6,7 @@ import { configureStore } from './store'
 import { initData } from './actions/surveyListAction'
 import NoMatch from './components/Exception/NotFound'
 import Loading from './components/Exception/Loading'
+import Offline from './components/Exception/Offline'
 import { MarginedContainer } from './components/layout'
 import Nav from './components/Nav'
 import Routes from './routes'
@@ -15,10 +16,12 @@ function App() {
     const survey_url = '/surveys'
     const { data, loading, error } = useFetch(survey_url)
 
+    console.log(data, loading, error)
+
     let body
     if (loading) body = <Loading />
-    else if (error) body = <NoMatch />
-    else if (!data) body = <p>No data</p>
+    else if (error) body = <Offline />
+    else if (!data) body = <NoMatch />
 
     const store = configureStore()
     store.dispatch(initData(data))
