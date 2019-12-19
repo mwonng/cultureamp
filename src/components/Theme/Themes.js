@@ -1,6 +1,7 @@
 import React from 'react'
 import { getAvarageRate } from '../../utils'
 import { ThemeWrapper } from './Style'
+import PropTypes from 'prop-types'
 
 function Themes({ allThemes }) {
     const themes = allThemes.map(at => (
@@ -19,6 +20,10 @@ function Themes({ allThemes }) {
     return <div>{themes}</div>
 }
 
+Themes.propTypes = {
+    allThemes: PropTypes.array.isRequired,
+}
+
 const Questions = ({ questions }) => {
     const list = questions.map(q => (
         <tr key={q.description} className="row">
@@ -32,6 +37,10 @@ const Questions = ({ questions }) => {
     ))
 
     return <tbody>{list}</tbody>
+}
+
+Questions.propTypes = {
+    questions: PropTypes.array,
 }
 
 export default Themes

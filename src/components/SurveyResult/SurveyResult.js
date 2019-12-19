@@ -5,9 +5,10 @@ import { isEmptyObj, floatToPercent } from '../../utils'
 import NotFound from '../Exception/NotFound'
 import Loading from '../Exception/Loading'
 import { ResultWrapper } from './Style'
+import PropTypes from 'prop-types'
 
 function SurveryResult(props) {
-    const { currentResult, prefetching, updateResult, match } = props
+    const { currentResult, updateResult, match } = props
     const resultEndpointPath = `/surveys/${match.params.id}`
     const { data, loading, error } = useFetch(resultEndpointPath)
 
@@ -19,7 +20,7 @@ function SurveryResult(props) {
 
     let body
     if (isEmptyObj(currentResult) && loading) body = <Loading />
-    else if (prefetching) body = <Loading />
+    else if (currentResult.prefetching) body = <Loading />
     else if (error) body = <NotFound />
     else if (!data && !currentResult) body = <p>No data</p>
 
@@ -37,6 +38,12 @@ function SurveryResult(props) {
             <ThemesContainer />
         </ResultWrapper>
     )
+}
+
+SurveryResult.propTypes = {
+    currentResult: PropTypes.object,
+    updateResult: PropTypes.func,
+    match: PropTypes.object.isRequired,
 }
 
 export default SurveryResult

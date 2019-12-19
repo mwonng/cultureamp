@@ -4,21 +4,14 @@ import axios from 'axios'
 import { StyledList, StyledListWrapper } from './Style'
 import PropTypes from 'prop-types'
 
-SurveyList.propTypes = {
-    surveys: PropTypes.object,
-    loadResult: PropTypes.func.isRequired,
-    prefetchingStart: PropTypes.func.isRequired,
-    prefetchingEnd: PropTypes.func.isRequired,
-    resetResult: PropTypes.func.isRequired,
-}
-
-function SurveyList({
-    surveys,
-    loadResult,
-    prefetchingStart,
-    prefetchingEnd,
-    resetResult,
-}) {
+function SurveyList(props) {
+    const {
+        surveys,
+        loadResult,
+        prefetchingStart,
+        prefetchingEnd,
+        resetResult,
+    } = props
     const shouldFetchRef = useRef(null)
     const { survey_results } = surveys
 
@@ -75,6 +68,14 @@ function SurveyList({
     })
 
     return <StyledListWrapper>{list}</StyledListWrapper>
+}
+
+SurveyList.propTypes = {
+    surveys: PropTypes.object,
+    loadResult: PropTypes.func.isRequired,
+    prefetchingStart: PropTypes.func.isRequired,
+    prefetchingEnd: PropTypes.func.isRequired,
+    resetResult: PropTypes.func.isRequired,
 }
 
 export default SurveyList
