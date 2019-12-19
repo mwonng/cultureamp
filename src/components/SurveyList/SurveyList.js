@@ -24,7 +24,6 @@ function SurveyList({
     const onMouseEnterHandler = result => {
         shouldFetchRef.current = setTimeout(async () => {
             try {
-                console.log('trying to fetch', result.url)
                 prefetchingStart()
                 axios
                     .get(`${process.env.REACT_APP_ENDPOINT}/${result.url}`)
@@ -38,7 +37,7 @@ function SurveyList({
             } catch (error) {
                 console.log('prefetching went wrong')
             }
-        }, 1000)
+        }, process.env.REACT_APP_PREFETCH_TIMEOUT)
     }
 
     const onMouseLeaveHandler = () => {
