@@ -8,7 +8,7 @@ import {
 } from '../../actions/surveryResultAction'
 
 const mapStateToProps = state => ({
-    surverys: state.surveryReducer,
+    surveys: state.surveyReducer,
 })
 
 const mapDispatchToProps = dispatch => ({

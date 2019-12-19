@@ -8,7 +8,6 @@ import { ResultWrapper } from './Style'
 
 function SurveryResult(props) {
     const { currentResult, prefetching, updateResult, match } = props
-    console.log(match)
     const resultEndpointPath = `/surveys/${match.params.id}`
     const { data, loading, error } = useFetch(resultEndpointPath)
 

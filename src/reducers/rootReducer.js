@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import surveryReducer from './surveyReducer'
+import { combineReducers } from 'redux'
+import surveyReducer from './surveyReducer'
 import currentSurveyReducer from './currentSurveyReducer'
 
 export default combineReducers({
-    surveryReducer,
-    currentResult: currentSurveyReducer
-});
+    surveyReducer,
+    currentResult: currentSurveyReducer,
+})

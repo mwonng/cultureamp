@@ -2,16 +2,25 @@ import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { StyledList, StyledListWrapper } from './Style'
+import PropTypes from 'prop-types'
+
+SurveyList.propTypes = {
+    surveys: PropTypes.object,
+    loadResult: PropTypes.func.isRequired,
+    prefetchingStart: PropTypes.func.isRequired,
+    prefetchingEnd: PropTypes.func.isRequired,
+    resetResult: PropTypes.func.isRequired,
+}
 
 function SurveyList({
-    surverys,
+    surveys,
     loadResult,
     prefetchingStart,
     prefetchingEnd,
     resetResult,
 }) {
     const shouldFetchRef = useRef(null)
-    const { survey_results } = surverys
+    const { survey_results } = surveys
 
     useEffect(() => {
         resetResult()

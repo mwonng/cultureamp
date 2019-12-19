@@ -1,6 +1,7 @@
 import React from 'react'
 import { getAvarageRate } from '../../utils'
 import { ThemeWrapper } from './Style'
+
 function Themes({ allThemes }) {
     const themes = allThemes.map(at => (
         <ThemeWrapper key={at.name} className="container-fluid">
@@ -18,7 +19,7 @@ function Themes({ allThemes }) {
     return <div>{themes}</div>
 }
 
-function Questions({ questions }) {
+const Questions = ({ questions }) => {
     const list = questions.map(q => (
         <tr key={q.description} className="row">
             <td className="col-9">{q.description}</td>
