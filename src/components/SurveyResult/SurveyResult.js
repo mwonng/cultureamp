@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import ThemesContainer from '../Theme/ThemesContainer'
 import { isEmptyObj, floatToPercent } from '../../utils'
-import NotFound from '../ErrorPage/NotFound'
-import Loading from '../ErrorPage/Loading'
+import NotFound from '../Exception/NotFound'
+import Loading from '../Exception/Loading'
 import { ResultWrapper } from './Style'
 
 function SurveryResult(props) {
     const { currentResult, prefetching, updateResult, match } = props
+    console.log(match)
     const resultEndpointPath = `/surveys/${match.params.id}`
     const { data, loading, error } = useFetch(resultEndpointPath)
 
@@ -28,7 +29,7 @@ function SurveryResult(props) {
     const result = isEmptyObj(currentResult) ? data : currentResult
 
     return (
-        <ResultWrapper>
+        <ResultWrapper data-testid="result-component">
             <h1>{result.survey_result_detail.name}</h1>
             <h4>
                 Response Rate:{' '}

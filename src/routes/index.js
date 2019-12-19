@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import SurveryListContainer from '../components/SurveyList/SurveryListContainer'
 import SurveryResultContainer from '../components/SurveyResult/SurveryResultContainer'
-import NoMatch from '../components/ErrorPage/NotFound'
+import NoMatch from '../components/Exception/NotFound'
 
 function Routes() {
     return (
