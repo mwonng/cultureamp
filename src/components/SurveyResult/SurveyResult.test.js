@@ -24,9 +24,12 @@ test('renders SurveyResult component', async () => {
         { initialState: mockStore }
     )
     expect(getByTestId('loading-component')).toHaveTextContent('Loading')
-    const resolvedNode = await waitForElement(() =>
-        getByTestId('result-component')
-    )
-    // expect(resolvedNode).toHaveTextContent('Response Rate')
-    expect(resolvedNode).toBeTruthy()
+    try {
+        const resolvedNode = await waitForElement(() =>
+            getByTestId('result-component')
+        )
+        expect(resolvedNode).toBeTruthy()
+    } catch (e) {
+        expect(e).toMatch('No matched page')
+    }
 })
