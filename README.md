@@ -13,7 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 -   I assume this test i focus on more functional which improve user experience rather than UI/Color itself
 -   About business logic, I dont familar with the relationship between different themes. All data need to be show I just show by the response's structure.
 -   Testing coverage is not my main goal for this test, so i wont have prefect testing coverage.
--   I assume the result is time sensitive, so everytime i need to fetch to fresh data.
+-   I assume the result is time sensitive, so everytime i need to fetch to fresh data so i don't set expired period for functionality
 
 ## Hightlight
 

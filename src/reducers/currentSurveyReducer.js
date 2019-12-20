@@ -7,7 +7,6 @@ export default (state = INITIAL_STATE, action) => {
         case 'LOAD_SURVEY':
             return {
                 ...state,
-                ...action.payload,
                 resultDetail: action.payload.survey_result_detail,
             }
         case 'RESET_RESULT':
@@ -17,7 +16,6 @@ export default (state = INITIAL_STATE, action) => {
         case 'UPDATE_RESULT':
             return {
                 ...state,
-                ...action.payload,
                 resultDetail: action.payload.survey_result_detail,
             }
         case 'PREFETCHING_START':
