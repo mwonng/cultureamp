@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 function Themes({ allThemes }) {
     const themes = allThemes.map(at => (
-        <ThemeWrapper key={at.name} className="container-fluid">
+        <ThemeWrapper key={at.name} className="container">
             <table className="table">
                 <thead className="thead-light">
                     <tr className="row">

@@ -16,5 +16,6 @@ export const StyledList = styled.li`
 export const StyledListWrapper = styled.ul`
     padding: 0 2rem;
     margin: auto;
-    width: 80%;
+    max-width: 860px;
+    width: 100%;
 `
