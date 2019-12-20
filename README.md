@@ -17,7 +17,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Hightlight
 
-### Fetching result speed improvment
+### Fetching result speed improvment on Desktop
 
 **Problem**
 
@@ -25,7 +25,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Generally, it can loading a spinner for indicate page are still loading. But this wont actually reducing loading speed for user and just telling user that 'we are loading'.
 
-So i implement a solution, not only showing spinner while loading but also have **prefetching** while user cusor on hover the area of the survey title (not only title link).
+So i implement a solution, not only showing spinner while loading but also have **prefetching** while user cusor on hover the area of the survey title (not only title link). this only works for desktop because of no hover on mobile
 
 However, it will increase a lot of work to split different senarios for this prefetching function and I'm not going to use Next.js directly which already have prefetch function.
 
